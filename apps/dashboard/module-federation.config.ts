@@ -15,6 +15,12 @@ const config: ModuleFederationConfig = {
    *
    */
   remotes: [],
+  shared: () => {
+    return {
+      singleton: true,
+      strictVersion: true,
+    };
+  },
 };
 
 /**
