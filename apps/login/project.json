@@ -34,7 +34,7 @@
       }
     },
     "serve": {
-      "dependsOn": ["dashboard:serve"],
+      // "dependsOn": ["dashboard:serve"],
       "options": {
         "port": 4201
       }
