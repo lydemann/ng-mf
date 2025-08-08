@@ -1,0 +1,23 @@
+{
+  "presets": [
+    [
+      // @see https://babeljs.io/docs/en/babel-preset-typescript
+      "@babel/preset-typescript",
+      {
+        "onlyRemoveTypeImports": true
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["../.."],
+        "alias": {
+          "@ng-mf/shared-ui": "./libs/shared/ui/src",
+          "@ng-mf/shared-ui/loader": "./dist/libs/shared/ui/src/loader"
+        }
+      }
+    ]
+  ]
+}

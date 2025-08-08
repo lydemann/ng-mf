@@ -21,5 +21,10 @@
       "login/Routes": ["apps/login/src/app/remote-entry/entry.routes.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "references": [
+    {
+      "path": "./.storybook/tsconfig.json"
+    }
+  ]
 }

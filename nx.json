@@ -52,6 +52,9 @@
           "codeCoverage": true
         }
       }
+    },
+    "build-storybook": {
+      "cache": true
     }
   },
   "generators": {
