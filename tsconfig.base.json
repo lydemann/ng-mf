@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ng-mf/shared-ui": ["dist/libs/shared/ui"],
+      "@ng-mf/shared-ui/*": ["dist/libs/shared/ui/dist/components/*"],
+      "@ng-mf/shared-ui/loader": ["dist/libs/shared/ui/loader"],
       "login/Routes": ["apps/login/src/app/remote-entry/entry.routes.ts"]
     }
   },

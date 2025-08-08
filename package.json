@@ -15,12 +15,16 @@
     "@module-federation/enhanced": "^0.17.0",
     "@nx/eslint": "21.3.11",
     "@nx/eslint-plugin": "21.3.11",
+    "@nx/jest": "21.3.11",
     "@nx/js": "21.3.11",
     "@nx/module-federation": "21.3.11",
     "@nx/web": "21.3.11",
     "@nx/webpack": "21.3.11",
     "@nx/workspace": "21.3.11",
+    "@nxext/stencil": "21.0.0",
     "@schematics/angular": "~20.1.0",
+    "@stencil/core": "^4.22.0",
+    "@stencil/sass": "3.0.7",
     "@swc-node/register": "~1.9.1",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
@@ -28,6 +32,7 @@
     "angular-eslint": "^20.0.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
+    "jest": "^30.0.2",
     "nx": "21.3.11",
     "prettier": "^2.6.2",
     "tslib": "^2.3.0",
@@ -41,8 +46,8 @@
     "@angular/forms": "~20.1.0",
     "@angular/platform-browser": "~20.1.0",
     "@angular/router": "~20.1.0",
+    "@nx/angular": "21.3.11",
     "rxjs": "~7.8.0",
-    "zone.js": "~0.15.0",
-    "@nx/angular": "21.3.11"
+    "zone.js": "~0.15.0"
   }
 }
