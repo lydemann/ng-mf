@@ -1,56 +1,41 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
+import { Button } from './button';
 
 const meta: Meta = {
   title: 'Components/Button',
   component: 'ui-button',
   parameters: {
     layout: 'centered',
-    docs: {
-      description: {
-        component: 'A button component that wraps Shoelace sl-button, providing a consistent design system interface with support for all Shoelace button features.',
-      },
-    },
   },
   argTypes: {
     type: {
       control: { type: 'select' },
-      options: ['primary', 'secondary', 'destructive'],
-      description: 'The type of button (primary, secondary, destructive)',
+      options: ['button', 'submit', 'reset'],
+      description: 'The type of button (button, submit, reset)',
       table: {
-        defaultValue: {  },
         type: { summary: 'ButtonType' },
+      },
+    },
+    variant: {
+      control: { type: 'select' },
+      options: ['default', 'primary', 'success', 'neutral', 'warning', 'danger', 'text'],
+      description: 'The variant of the button (default, primary, success, neutral, warning, danger, text)',
+      table: {
+        type: { summary: 'ButtonVariant' },
       },
     },
     size: {
       control: { type: 'select' },
       options: ['small', 'medium', 'large'],
-      description: 'The size of the button',
+      description: 'The size of the button (small, medium, large)',
       table: {
-        defaultValue: { summary: 'medium' },
         type: { summary: 'ButtonSize' },
-      },
-    },
-    variant: {
-      control: { type: 'select' },
-      options: ['filled', 'outlined', 'ghost'],
-      description: 'The visual variant of the button',
-      table: {
-        defaultValue: { summary: 'filled' },
-        type: { summary: 'ButtonVariant' },
-      },
-    },
-    icon: {
-      control: { type: 'text' },
-      description: 'Icon name from Shoelace icon library',
-      table: {
-        type: { summary: 'string' },
       },
     },
     text: {
       control: { type: 'text' },
       description: 'The text content of the button',
       table: {
-        defaultValue: { summary: 'Button' },
         type: { summary: 'string' },
       },
     },
@@ -58,7 +43,6 @@ const meta: Meta = {
       control: { type: 'boolean' },
       description: 'Whether the button should use destructive styling',
       table: {
-        defaultValue: {  },
         type: { summary: 'boolean' },
       },
     },
@@ -66,15 +50,6 @@ const meta: Meta = {
       control: { type: 'boolean' },
       description: 'Whether the button is disabled',
       table: {
-        defaultValue: {  },
-        type: { summary: 'boolean' },
-      },
-    },
-    loading: {
-      control: { type: 'boolean' },
-      description: 'Whether the button is in loading state',
-      table: {
-        defaultValue: {  },
         type: { summary: 'boolean' },
       },
     },
@@ -89,7 +64,6 @@ const meta: Meta = {
       control: { type: 'boolean' },
       description: 'Whether the button should be full width',
       table: {
-        defaultValue: {  },
         type: { summary: 'boolean' },
       },
     },
@@ -97,23 +71,13 @@ const meta: Meta = {
       control: { type: 'boolean' },
       description: 'Whether the button should be pill-shaped',
       table: {
-        defaultValue: {  },
         type: { summary: 'boolean' },
       },
     },
-    circle: {
+    round: {
       control: { type: 'boolean' },
-      description: 'Whether the button should be circular (for icon-only)',
+      description: 'Whether the button should be round (for icon-only buttons)',
       table: {
-        defaultValue: {  },
-        type: { summary: 'boolean' },
-      },
-    },
-    caret: {
-      control: { type: 'boolean' },
-      description: 'Whether the button should have a caret',
-      table: {
-        defaultValue: {  },
         type: { summary: 'boolean' },
       },
     },
@@ -122,155 +86,139 @@ const meta: Meta = {
       options: ['button', 'submit', 'reset'],
       description: 'The button type for form submission',
       table: {
-        defaultValue: { summary: 'button' },
         type: { summary: 'string' },
       },
     },
-    href: {
-      control: { type: 'text' },
-      description: 'Link URL (renders as anchor when provided)',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-    target: {
-      control: { type: 'select' },
-      options: ['_blank', '_parent', '_self', '_top'],
-      description: 'Target for link buttons',
-      table: {
-        type: { summary: 'string' },
-      },
-    },
-  },
-  args: {
-    text: 'Button',
-    type: 'primary',
-    size: 'medium',
-    variant: 'filled',
-    destructive: false,
-    disabled: false,
-    loading: false,
-    fullWidth: false,
-    pill: false,
-    circle: false,
-    caret: false,
-    buttonType: 'button',
   },
 };
 
 export default meta;
 type Story = StoryObj;
 
-// Default story
-export const Default: Story = {
-  args: {
-    text: 'Button',
-    type: 'primary',
-    size: 'medium',
-    variant: 'filled',
-  },
-};
-
-// Button Types Section
+// Basic Button Stories
 export const Primary: Story = {
   args: {
     text: 'Primary Button',
-    type: 'primary',
-    variant: 'filled',
-  },
+    variant: 'primary',
+    type: 'button',
+  } as Button,
 };
 
-export const Secondary: Story = {
+export const Neutral: Story = {
   args: {
     text: 'Secondary Button',
-    type: 'secondary',
-    variant: 'filled',
-  },
+    variant: 'neutral',
+    type: 'button',
+  } as Button,
 };
 
 export const Destructive: Story = {
   args: {
     text: 'Destructive Button',
-    type: 'destructive',
-    variant: 'filled',
-  },
+    variant: 'danger',
+    type: 'button',
+  } as Button,
 };
 
-// Button Variants Section
+// Variant Stories
 export const Filled: Story = {
   args: {
     text: 'Filled Button',
-    variant: 'filled',
-  },
+    variant: 'default',
+  } as Button,
 };
 
 export const Outlined: Story = {
   args: {
     text: 'Outlined Button',
-    variant: 'outlined',
-  },
+    variant: 'default',
+    outline: true,
+  } as Button,
 };
 
 export const Ghost: Story = {
   args: {
     text: 'Ghost Button',
-    variant: 'ghost',
-  },
+    variant: 'text',
+  } as Button,
 };
 
-// Button Sizes Section
+// Size Stories
 export const Small: Story = {
   args: {
     text: 'Small Button',
     size: 'small',
-  },
+  } as Button,
 };
 
 export const Medium: Story = {
   args: {
     text: 'Medium Button',
     size: 'medium',
-  },
+  } as Button,
 };
 
 export const Large: Story = {
   args: {
     text: 'Large Button',
     size: 'large',
-  },
+  } as Button,
 };
 
-// Icon Buttons Section
-export const WithIcon: Story = {
+// Icon Slot Stories
+export const WithPrefixIcon: Story = {
   args: {
-    text: 'Button with Icon',
-    icon: 'gear',
+    text: 'Upload',
+    variant: 'primary',
+    type: 'button',
+  } as Button,
+  render: (args) => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <ui-button ${Object.entries(args).map(([key, value]) => `${key}="${value}"`).join(' ')}>
+        <sl-icon slot="prefix" name="upload"></sl-icon>
+      </ui-button>
+    `;
+    return div.firstElementChild;
   },
 };
 
-export const IconOnly: Story = {
+export const WithSuffixIcon: Story = {
+  args: {
+    text: 'Download',
+    variant: 'primary',
+    type: 'button',
+  } as Button,
+  render: (args) => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <ui-button ${Object.entries(args).map(([key, value]) => `${key}="${value}"`).join(' ')}>
+        <sl-icon slot="suffix" name="download"></sl-icon>
+      </ui-button>
+    `;
+    return div.firstElementChild;
+  },
+};
+
+export const IconOnlyRound: Story = {
   args: {
     text: '',
-    icon: 'gear',
+    variant: 'primary',
+    type: 'button',
     circle: true,
+  } as Button,
+  render: (args) => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <ui-button ${Object.entries(args).map(([key, value]) => `${key}="${value}"`).join(' ')}>
+        <sl-icon slot="prefix" name="gear"></sl-icon>
+      </ui-button>
+    `;
+    return div.firstElementChild;
   },
 };
 
-export const WithCaret: Story = {
-  args: {
-    text: 'Button with Caret',
-    caret: true,
-  },
-};
-
-// Button States Section
-export const Loading: Story = {
-  args: {
-    text: 'Loading Button',
-    loading: true,
-  },
-};
-
+// State Stories
 export const Disabled: Story = {
   args: {
     text: 'Disabled Button',
@@ -278,7 +226,6 @@ export const Disabled: Story = {
   },
 };
 
-// Button Styles Section
 export const Pill: Story = {
   args: {
     text: 'Pill Button',
@@ -286,6 +233,7 @@ export const Pill: Story = {
   },
 };
 
+// Layout Stories
 export const FullWidth: Story = {
   args: {
     text: 'Full Width Button',
@@ -293,31 +241,14 @@ export const FullWidth: Story = {
   },
 };
 
-export const CustomWidth: Story = {
+export const CustomMinWidth: Story = {
   args: {
     text: 'Custom Width',
     minWidth: '200px',
   },
 };
 
-// Link Buttons Section
-export const LinkButton: Story = {
-  args: {
-    text: 'Link Button',
-    href: 'https://shoelace.style',
-    target: '_blank',
-  },
-};
-
-export const DownloadButton: Story = {
-  args: {
-    text: 'Download',
-    href: '/download',
-    download: 'file.pdf',
-  },
-};
-
-// Form Buttons Section
+// Form Button Stories
 export const SubmitButton: Story = {
   args: {
     text: 'Submit',
@@ -334,150 +265,32 @@ export const ResetButton: Story = {
   },
 };
 
-// Button Groups and Layouts
-export const HorizontalButtonGroup: Story = {
-  render: () => `
-    <div style="display: flex; gap: 16px; align-items: center;">
-      <ui-button text="Cancel" type="secondary" variant="outlined"></ui-button>
-      <ui-button text="Get Report" type="secondary" variant="outlined"></ui-button>
-      <ui-button text="Apply Changes" type="primary" variant="filled"></ui-button>
-    </div>
-  `,
-  parameters: {
-    docs: {
-      description: {
-        story: 'Example of horizontal button distribution with 16px spacing between buttons.',
-      },
-    },
+// Button Group Example
+export const ButtonGroup: Story = {
+  render: () => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <ui-button text="Cancel" variant="neutral" type="button"></ui-button>
+        <ui-button text="Save" variant="primary" type="button">
+          <sl-icon slot="prefix" name="check"></sl-icon>
+        </ui-button>
+      </div>
+    `;
+    return div.firstElementChild;
   },
 };
 
-export const VerticalButtonGroup: Story = {
-  render: () => `
-    <div style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start;">
-      <ui-button text="Apply Changes" type="primary" variant="filled"></ui-button>
-      <ui-button text="Get Report" type="secondary" variant="outlined"></ui-button>
-      <ui-button text="Cancel" type="secondary" variant="outlined"></ui-button>
-    </div>
-  `,
-  parameters: {
-    docs: {
-      description: {
-        story: 'Example of vertical button distribution with 16px spacing between buttons.',
-      },
-    },
-  },
-};
-
-// All Button Variants Grid (like the Figma specification)
-export const AllVariantsGrid: Story = {
-  render: () => `
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 800px;">
-      <!-- Primary Filled -->
-      <div style="text-align: center;">
-        <ui-button text="Button" type="primary" variant="filled"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Primary Filled</p>
-      </div>
-      
-      <!-- Primary Outlined -->
-      <div style="text-align: center;">
-        <ui-button text="Button" type="primary" variant="outlined"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Primary Outlined</p>
-      </div>
-      
-      <!-- Destructive Filled -->
-      <div style="text-align: center;">
-        <ui-button text="Button" type="destructive" variant="filled"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Destructive Filled</p>
-      </div>
-      
-      <!-- Destructive Outlined -->
-      <div style="text-align: center;">
-        <ui-button text="Button" type="destructive" variant="outlined"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Destructive Outlined</p>
-      </div>
-      
-      <!-- With Icons -->
-      <div style="text-align: center;">
-        <ui-button text="Button" icon="gear" type="primary" variant="filled"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">With Icon</p>
-      </div>
-      
-      <!-- Icon Only -->
-      <div style="text-align: center;">
-        <ui-button icon="gear" circle="true" type="primary" variant="filled"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Icon Only</p>
-      </div>
-      
-      <!-- Loading State -->
-      <div style="text-align: center;">
-        <ui-button text="Button" loading="true" type="primary" variant="filled"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Loading</p>
-      </div>
-      
-      <!-- Secondary -->
-      <div style="text-align: center;">
-        <ui-button text="Button" type="secondary" variant="outlined"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Secondary</p>
-      </div>
-    </div>
-  `,
-  parameters: {
-    docs: {
-      description: {
-        story: 'Comprehensive grid showing all button variants, similar to the Figma specification.',
-      },
-    },
-  },
-};
-
-// Size Comparison
-export const SizeComparison: Story = {
-  render: () => `
-    <div style="display: flex; gap: 16px; align-items: center;">
-      <div style="text-align: center;">
-        <ui-button text="Small" size="small"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Small</p>
-      </div>
-      <div style="text-align: center;">
-        <ui-button text="Medium" size="medium"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Medium</p>
-      </div>
-      <div style="text-align: center;">
-        <ui-button text="Large" size="large"></ui-button>
-        <p style="margin: 8px 0 0 0; font-size: 12px; color: #666;">Large</p>
-      </div>
-    </div>
-  `,
-  parameters: {
-    docs: {
-      description: {
-        story: 'Comparison of all button sizes.',
-      },
-    },
-  },
-};
-
-// Interactive Playground
-export const InteractivePlayground: Story = {
-  args: {
-    text: 'Interactive Button',
-    type: 'primary',
-    size: 'medium',
-    variant: 'filled',
-    destructive: false,
-    disabled: false,
-    loading: false,
-    fullWidth: false,
-    pill: false,
-    circle: false,
-    caret: false,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Interactive playground where you can modify all button properties using the controls panel.',
-      },
-    },
+// Complex Example with Multiple Icons
+export const ComplexButton: Story = {
+  render: () => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <ui-button text="Export Data" variant="primary" type="button" size="large">
+        <sl-icon slot="prefix" name="download"></sl-icon>
+        <sl-icon slot="suffix" name="arrow-right"></sl-icon>
+      </ui-button>
+    `;
+    return div.firstElementChild;
   },
 }; 

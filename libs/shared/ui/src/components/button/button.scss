@@ -13,9 +13,10 @@
   width: 100%;
 }
 
-// Ensure proper icon sizing for circular buttons
-:host([circle]) sl-icon {
-  font-size: 1.2em;
+// Ensure proper icon sizing for round buttons
+:host([round]) sl-button {
+  --sl-button-size: 2.5rem;
+  --sl-button-border-radius: 50%;
 }
 
 // Custom min-width support

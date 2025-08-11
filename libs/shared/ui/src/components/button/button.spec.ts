@@ -8,11 +8,11 @@ describe('ui-button', () => {
       html: '<ui-button></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton).toBeTruthy();
-    expect(slButton.textContent.trim()).toBe('Button');
-    expect(slButton.getAttribute('variant')).toBe('primary');
-    expect(slButton.getAttribute('size')).toBe('medium');
+    const button = page.root.querySelector('sl-button');
+    expect(button).toBeTruthy();
+    expect(button.getAttribute('variant')).toBe('primary');
+    expect(button.getAttribute('size')).toBe('medium');
+    expect(button.textContent.trim()).toBe('Button');
   });
 
   it('renders with custom text', async () => {
@@ -21,186 +21,184 @@ describe('ui-button', () => {
       html: '<ui-button text="Custom Text"></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.textContent.trim()).toBe('Custom Text');
+    const button = page.root.querySelector('sl-button');
+    expect(button.textContent.trim()).toBe('Custom Text');
   });
 
-  it('renders with different types', async () => {
-    const types = ['primary', 'secondary', 'destructive'];
-    
-    for (const type of types) {
-      const page = await newSpecPage({
-        components: [Button],
-        html: `<ui-button type="${type}"></ui-button>`,
-      });
+  it('maps type prop correctly', async () => {
+    const page = await newSpecPage({
+      components: [Button],
+      html: '<ui-button type="secondary"></ui-button>',
+    });
 
-      const slButton = page.root.shadowRoot.querySelector('sl-button');
-      if (type === 'destructive') {
-        expect(slButton.getAttribute('variant')).toBe('danger');
-      } else if (type === 'primary') {
-        expect(slButton.getAttribute('variant')).toBe('primary');
-      } else {
-        expect(slButton.getAttribute('variant')).toBe('default');
-      }
-    }
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('variant')).toBe('default');
   });
 
-  it('renders with different sizes', async () => {
-    const sizes = ['small', 'medium', 'large'];
-    
-    for (const size of sizes) {
-      const page = await newSpecPage({
-        components: [Button],
-        html: `<ui-button size="${size}"></ui-button>`,
-      });
+  it('maps destructive type correctly', async () => {
+    const page = await newSpecPage({
+      components: [Button],
+      html: '<ui-button type="destructive"></ui-button>',
+    });
 
-      const slButton = page.root.shadowRoot.querySelector('sl-button');
-      expect(slButton.getAttribute('size')).toBe(size);
-    }
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('variant')).toBe('danger');
   });
 
-  it('renders with different variants', async () => {
+  it('maps variant prop correctly', async () => {
     const page = await newSpecPage({
       components: [Button],
       html: '<ui-button variant="outlined"></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('outline')).toBe('');
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('outline')).toBe('true');
+  });
 
-    const page2 = await newSpecPage({
+  it('maps ghost variant correctly', async () => {
+    const page = await newSpecPage({
       components: [Button],
       html: '<ui-button variant="ghost"></ui-button>',
     });
 
-    const slButton2 = page2.root.shadowRoot.querySelector('sl-button');
-    expect(slButton2.getAttribute('variant')).toBe('text');
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('variant')).toBe('text');
   });
 
-  it('renders with icon', async () => {
+  it('applies size prop', async () => {
     const page = await newSpecPage({
       components: [Button],
-      html: '<ui-button icon="gear" text="Button with Icon"></ui-button>',
+      html: '<ui-button size="large"></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    const icon = slButton.querySelector('sl-icon');
-    expect(icon).toBeTruthy();
-    expect(icon.getAttribute('name')).toBe('gear');
-    expect(icon.getAttribute('slot')).toBe('prefix');
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('size')).toBe('large');
   });
 
-  it('renders icon-only button when circle is true', async () => {
-    const page = await newSpecPage({
-      components: [Button],
-      html: '<ui-button icon="gear" circle="true"></ui-button>',
-    });
-
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('circle')).toBe('');
-    expect(slButton.textContent.trim()).toBe('');
-  });
-
-  it('renders disabled state', async () => {
+  it('applies disabled prop', async () => {
     const page = await newSpecPage({
       components: [Button],
       html: '<ui-button disabled="true"></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('disabled')).toBe('');
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('disabled')).toBe('true');
   });
 
-  it('renders loading state', async () => {
-    const page = await newSpecPage({
-      components: [Button],
-      html: '<ui-button loading="true"></ui-button>',
-    });
-
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('loading')).toBe('');
-  });
-
-  it('renders destructive variant', async () => {
-    const page = await newSpecPage({
-      components: [Button],
-      html: '<ui-button destructive="true"></ui-button>',
-    });
-
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('variant')).toBe('danger');
-  });
-
-  it('renders full width', async () => {
-    const page = await newSpecPage({
-      components: [Button],
-      html: '<ui-button full-width="true"></ui-button>',
-    });
-
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.style.width).toBe('100%');
-  });
-
-  it('renders pill shape', async () => {
+  it('applies pill prop', async () => {
     const page = await newSpecPage({
       components: [Button],
       html: '<ui-button pill="true"></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('pill')).toBe('');
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('pill')).toBe('true');
   });
 
-  it('renders with caret', async () => {
+  it('applies round prop', async () => {
     const page = await newSpecPage({
       components: [Button],
-      html: '<ui-button caret="true"></ui-button>',
+      html: '<ui-button round="true"></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('caret')).toBe('');
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('round')).toBe('true');
   });
 
-  it('renders as link when href is provided', async () => {
-    const page = await newSpecPage({
-      components: [Button],
-      html: '<ui-button href="https://example.com" target="_blank"></ui-button>',
-    });
-
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('href')).toBe('https://example.com');
-    expect(slButton.getAttribute('target')).toBe('_blank');
-  });
-
-  it('renders as submit button', async () => {
+  it('applies buttonType prop', async () => {
     const page = await newSpecPage({
       components: [Button],
       html: '<ui-button button-type="submit"></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('type')).toBe('submit');
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('type')).toBe('submit');
   });
 
-  it('applies custom min-width', async () => {
+  it('applies form props', async () => {
     const page = await newSpecPage({
       components: [Button],
-      html: '<ui-button min-width="100px"></ui-button>',
+      html: '<ui-button form="test-form" form-action="/submit" form-method="post"></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.style.minWidth).toBe('100px');
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('form')).toBe('test-form');
+    expect(button.getAttribute('formaction')).toBe('/submit');
+    expect(button.getAttribute('formmethod')).toBe('post');
   });
 
-  it('maps form properties correctly', async () => {
+  it('applies custom styles for minWidth', async () => {
     const page = await newSpecPage({
       components: [Button],
-      html: '<ui-button form="myForm" form-action="/submit" form-method="post"></ui-button>',
+      html: '<ui-button min-width="200px"></ui-button>',
     });
 
-    const slButton = page.root.shadowRoot.querySelector('sl-button');
-    expect(slButton.getAttribute('form')).toBe('myForm');
-    expect(slButton.getAttribute('formaction')).toBe('/submit');
-    expect(slButton.getAttribute('formmethod')).toBe('post');
+    const button = page.root.querySelector('sl-button');
+    expect(button.style.minWidth).toBe('200px');
+  });
+
+  it('applies custom styles for fullWidth', async () => {
+    const page = await newSpecPage({
+      components: [Button],
+      html: '<ui-button full-width="true"></ui-button>',
+    });
+
+    const button = page.root.querySelector('sl-button');
+    expect(button.style.width).toBe('100%');
+  });
+
+  it('renders prefix icon slot', async () => {
+    const page = await newSpecPage({
+      components: [Button],
+      html: '<ui-button><sl-icon slot="prefix" name="gear"></sl-icon></ui-button>',
+    });
+
+    const icon = page.root.querySelector('sl-icon[slot="prefix"]');
+    expect(icon).toBeTruthy();
+    expect(icon.getAttribute('name')).toBe('gear');
+  });
+
+  it('renders suffix icon slot', async () => {
+    const page = await newSpecPage({
+      components: [Button],
+      html: '<ui-button><sl-icon slot="suffix" name="arrow-right"></sl-icon></ui-button>',
+    });
+
+    const icon = page.root.querySelector('sl-icon[slot="suffix"]');
+    expect(icon).toBeTruthy();
+    expect(icon.getAttribute('name')).toBe('arrow-right');
+  });
+
+  it('renders both prefix and suffix icons', async () => {
+    const page = await newSpecPage({
+      components: [Button],
+      html: `
+        <ui-button>
+          <sl-icon slot="prefix" name="download"></sl-icon>
+          <sl-icon slot="suffix" name="arrow-right"></sl-icon>
+        </ui-button>
+      `,
+    });
+
+    const prefixIcon = page.root.querySelector('sl-icon[slot="prefix"]');
+    const suffixIcon = page.root.querySelector('sl-icon[slot="suffix"]');
+    
+    expect(prefixIcon).toBeTruthy();
+    expect(suffixIcon).toBeTruthy();
+    expect(prefixIcon.getAttribute('name')).toBe('download');
+    expect(suffixIcon.getAttribute('name')).toBe('arrow-right');
+  });
+
+  it('renders round button with icon', async () => {
+    const page = await newSpecPage({
+      components: [Button],
+      html: '<ui-button round="true"><sl-icon slot="prefix" name="gear"></sl-icon></ui-button>',
+    });
+
+    const button = page.root.querySelector('sl-button');
+    expect(button.getAttribute('round')).toBe('true');
+    
+    const icon = page.root.querySelector('sl-icon[slot="prefix"]');
+    expect(icon).toBeTruthy();
   });
 }); 
