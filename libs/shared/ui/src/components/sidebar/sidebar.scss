@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+// CSS Variables for theming
+:host {
+  --sidebar-bg: #f5f5f5;
+  --sidebar-active: #3b82f6;
+  --sidebar-text: #374151;
+  --sidebar-hover: #e5e7eb;
+  --sidebar-width: 16rem;
+  --sidebar-collapsed-width: 4rem;
+}
+
+// Shoelace slot styling
+::slotted(sl-button) {
+  --sl-button-font-size-medium: 0.875rem;
+  --sl-button-padding-medium: 0.5rem 1rem;
+}
+
+::slotted(sl-icon) {
+  --sl-icon-size: 1.25rem;
+}
+
+// Responsive behavior
+@media (max-width: 768px) {
+  :host {
+    --sidebar-width: 100%;
+    --sidebar-collapsed-width: 4rem;
+  }
+}

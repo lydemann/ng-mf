@@ -1,3 +1,7 @@
+// Import Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // Import Shoelace theme
-@import '~@shoelace-style/shoelace/dist/themes/light.css';
-@import '~@shoelace-style/shoelace/dist/themes/dark.css';
+@import '../../../../../node_modules/@shoelace-style/shoelace/dist/themes/light.css';

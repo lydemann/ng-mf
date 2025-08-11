@@ -1,6 +1,7 @@
 import { Config } from '@stencil/core';
 
 import { sass } from '@stencil/sass';
+import tailwind, { tailwindHMR } from 'stencil-tailwind-plugin';
 
 export const config: Config = {
   namespace: 'shared-ui',
@@ -10,7 +11,11 @@ export const config: Config = {
   extras: {
     experimentalImportInjection: true,
   },
-  plugins: [sass()],
+  plugins: [
+    sass(),
+    tailwind(),
+    tailwindHMR(),
+  ],
   globalStyle: 'src/style/global.scss',
   outputTargets: [
     {
