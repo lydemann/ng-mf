@@ -1,5 +1,4 @@
-import type { StorybookConfig, Options } from '@storybook/core-common';
-import type { Configuration } from 'webpack';
+import type { StorybookConfig } from '@storybook/core-common';
 
 export default {
   stories: [
@@ -24,8 +23,5 @@ export default {
     babelModeV7: true,
     storyStoreV7: true,
     postcss: true,
-  },
-  webpackFinal: async (config: Configuration, options: Options) => {
-    return config;
   },
 } as StorybookConfig;
