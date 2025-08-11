@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ButtonSize, ButtonType, ButtonVariant } from "./components/button/button";
+export { ButtonSize, ButtonType, ButtonVariant } from "./components/button/button";
 export namespace Components {
     interface MyComponent {
         /**
@@ -20,6 +22,125 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface UiButton {
+        /**
+          * The button type for form submission
+          * @default 'button'
+         */
+        "buttonType": 'button' | 'submit' | 'reset';
+        /**
+          * Whether the button should have a caret
+          * @default false
+         */
+        "caret": boolean;
+        /**
+          * Whether the button should be circular (for icon-only buttons)
+          * @default false
+         */
+        "circle": boolean;
+        /**
+          * Whether the button is destructive (red variant)
+          * @default false
+         */
+        "destructive": boolean;
+        /**
+          * Whether the button is disabled
+          * @default false
+         */
+        "disabled": boolean;
+        /**
+          * Download attribute for link buttons
+         */
+        "download": string;
+        /**
+          * Form ID to associate with
+         */
+        "form": string;
+        /**
+          * Form action override
+         */
+        "formAction": string;
+        /**
+          * Form encoding type override
+         */
+        "formEnctype": 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain';
+        /**
+          * Form method override
+         */
+        "formMethod": 'post' | 'get';
+        /**
+          * Form no validate override
+          * @default false
+         */
+        "formNoValidate": boolean;
+        /**
+          * Form target override
+         */
+        "formTarget": '_self' | '_blank' | '_parent' | '_top' | string;
+        /**
+          * Whether the button should be full width
+          * @default false
+         */
+        "fullWidth": boolean;
+        /**
+          * Link URL (renders as anchor when provided)
+         */
+        "href": string;
+        /**
+          * The icon to display (SVG path or icon name)
+         */
+        "icon": string;
+        /**
+          * Whether the button is in loading state
+          * @default false
+         */
+        "loading": boolean;
+        /**
+          * Minimum width for the button
+         */
+        "minWidth": string;
+        /**
+          * Button name for form submission
+         */
+        "name": string;
+        /**
+          * Whether the button should be pill-shaped
+          * @default false
+         */
+        "pill": boolean;
+        /**
+          * Rel attribute for link buttons
+         */
+        "rel": string;
+        /**
+          * The size of the button (small, medium, large)
+          * @default 'medium'
+         */
+        "size": ButtonSize;
+        /**
+          * Target for link buttons
+         */
+        "target": '_blank' | '_parent' | '_self' | '_top';
+        /**
+          * The text content of the button
+          * @default 'Button'
+         */
+        "text": string;
+        /**
+          * The type of button (primary, secondary, destructive)
+          * @default 'primary'
+         */
+        "type": ButtonType;
+        /**
+          * Button value for form submission
+         */
+        "value": string;
+        /**
+          * The variant of the button (filled, outlined, ghost)
+          * @default 'filled'
+         */
+        "variant": ButtonVariant;
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -28,8 +149,15 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLUiButtonElement extends Components.UiButton, HTMLStencilElement {
+    }
+    var HTMLUiButtonElement: {
+        prototype: HTMLUiButtonElement;
+        new (): HTMLUiButtonElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "ui-button": HTMLUiButtonElement;
     }
 }
 declare namespace LocalJSX {
@@ -47,8 +175,128 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface UiButton {
+        /**
+          * The button type for form submission
+          * @default 'button'
+         */
+        "buttonType"?: 'button' | 'submit' | 'reset';
+        /**
+          * Whether the button should have a caret
+          * @default false
+         */
+        "caret"?: boolean;
+        /**
+          * Whether the button should be circular (for icon-only buttons)
+          * @default false
+         */
+        "circle"?: boolean;
+        /**
+          * Whether the button is destructive (red variant)
+          * @default false
+         */
+        "destructive"?: boolean;
+        /**
+          * Whether the button is disabled
+          * @default false
+         */
+        "disabled"?: boolean;
+        /**
+          * Download attribute for link buttons
+         */
+        "download"?: string;
+        /**
+          * Form ID to associate with
+         */
+        "form"?: string;
+        /**
+          * Form action override
+         */
+        "formAction"?: string;
+        /**
+          * Form encoding type override
+         */
+        "formEnctype"?: 'application/x-www-form-urlencoded' | 'multipart/form-data' | 'text/plain';
+        /**
+          * Form method override
+         */
+        "formMethod"?: 'post' | 'get';
+        /**
+          * Form no validate override
+          * @default false
+         */
+        "formNoValidate"?: boolean;
+        /**
+          * Form target override
+         */
+        "formTarget"?: '_self' | '_blank' | '_parent' | '_top' | string;
+        /**
+          * Whether the button should be full width
+          * @default false
+         */
+        "fullWidth"?: boolean;
+        /**
+          * Link URL (renders as anchor when provided)
+         */
+        "href"?: string;
+        /**
+          * The icon to display (SVG path or icon name)
+         */
+        "icon"?: string;
+        /**
+          * Whether the button is in loading state
+          * @default false
+         */
+        "loading"?: boolean;
+        /**
+          * Minimum width for the button
+         */
+        "minWidth"?: string;
+        /**
+          * Button name for form submission
+         */
+        "name"?: string;
+        /**
+          * Whether the button should be pill-shaped
+          * @default false
+         */
+        "pill"?: boolean;
+        /**
+          * Rel attribute for link buttons
+         */
+        "rel"?: string;
+        /**
+          * The size of the button (small, medium, large)
+          * @default 'medium'
+         */
+        "size"?: ButtonSize;
+        /**
+          * Target for link buttons
+         */
+        "target"?: '_blank' | '_parent' | '_self' | '_top';
+        /**
+          * The text content of the button
+          * @default 'Button'
+         */
+        "text"?: string;
+        /**
+          * The type of button (primary, secondary, destructive)
+          * @default 'primary'
+         */
+        "type"?: ButtonType;
+        /**
+          * Button value for form submission
+         */
+        "value"?: string;
+        /**
+          * The variant of the button (filled, outlined, ghost)
+          * @default 'filled'
+         */
+        "variant"?: ButtonVariant;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "ui-button": UiButton;
     }
 }
 export { LocalJSX as JSX };
@@ -56,6 +304,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "ui-button": LocalJSX.UiButton & JSXBase.HTMLAttributes<HTMLUiButtonElement>;
         }
     }
 }

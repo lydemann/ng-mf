@@ -11,6 +11,7 @@ export const config: Config = {
     experimentalImportInjection: true,
   },
   plugins: [sass()],
+  globalStyle: 'src/global/global.scss',
   outputTargets: [
     {
       type: 'dist',

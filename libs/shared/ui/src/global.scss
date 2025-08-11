@@ -1,0 +1,16 @@
+// Import Shoelace theme
+@import '~@shoelace-style/shoelace/dist/themes/light.css';
+@import '~@shoelace-style/shoelace/dist/themes/dark.css';
+
+@import url('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.15.0/cdn/themes/light.css');
+
+// Your custom design system styles
+:root {
+  // Override Shoelace CSS custom properties here
+    --sl-color-primary-600: #8b5cf6;
+    --sl-color-primary-700: #7c3aed;
+    --sl-color-primary-800: #6d28d9;
+    --sl-color-danger-600: #ef4444;
+    --sl-color-danger-700: #dc2626;
+    --sl-color-danger-800: #b91c1c;
+}

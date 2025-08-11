@@ -1,0 +1,22 @@
+// Button Component Styles
+// This component wraps Shoelace sl-button, so minimal custom styling is needed
+
+:host {
+  display: inline-block;
+}
+
+// Custom width support
+:host([full-width]) {
+  display: block;
+  width: 100%;
+}
+
+// Ensure proper icon sizing for circular buttons
+:host([circle]) sl-icon {
+  font-size: 1.2em;
+}
+
+// Custom min-width support
+:host([min-width]) {
+  min-width: var(--min-width);
+} 
