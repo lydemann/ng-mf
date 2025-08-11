@@ -79,6 +79,7 @@
         "port": 4400,
         "configDir": "libs/shared/ui/.storybook",
         "config": {
+          "dependsOn": ["shared-ui:build"],
           "configFolder": "libs/shared/ui/.storybook",
           "framework": {
             "name": "@storybook/web-components-vite"

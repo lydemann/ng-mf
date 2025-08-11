@@ -1,5 +1,7 @@
 // Button Component Styles
 // This component wraps Shoelace sl-button, so minimal custom styling is needed
+@import '../../style/variables.scss';
+
 
 :host {
   display: inline-block;

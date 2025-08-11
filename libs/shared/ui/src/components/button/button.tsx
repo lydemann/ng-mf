@@ -1,5 +1,8 @@
 import { Component, Prop, h, Element } from '@stencil/core';
+
+// Import Shoelace components directly
 import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 
 export type ButtonType = 'primary' | 'secondary' | 'destructive';
 export type ButtonSize = 'small' | 'medium' | 'large';
@@ -247,12 +250,14 @@ export class Button {
     const buttonStyles = this.getButtonStyles();
 
     return (
-      <sl-button
-        {...shoelaceProps}
-        style={buttonStyles}
-      >
-        {this.getButtonContent()}
-      </sl-button>
+      <div class="button-container">
+        <sl-button
+          {...shoelaceProps}
+          style={buttonStyles}
+        >
+          {this.getButtonContent()}
+        </sl-button>
+      </div>
     );
   }
 } 
