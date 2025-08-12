@@ -175,6 +175,8 @@ export class Button {
     return styles;
   }
 
+
+
   render() {
     const shoelaceProps = this.getShoelaceProps();
     const buttonStyles = this.getButtonStyles();

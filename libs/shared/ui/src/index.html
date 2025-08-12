@@ -10,13 +10,62 @@
 
     <script type="module" src="/build/shared-ui.esm.js"></script>
     <script nomodule src="/build/shared-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
   </head>
   <body>
+    <h1>Shared UI Components Demo</h1>
+    
+    <h2>My Component</h2>
     <my-component
       first="Stencil"
       last="'Don't call me a framework' JS"
     ></my-component>
 
-    <button variant="primary">Hello</button>
+    <h2>Button Component</h2>
+    <ui-button variant="primary">Hello</ui-button>
+
+    <h2>Icon Component Examples</h2>
+    
+    <h3>Basic Icons</h3>
+    <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+      <ui-icon name="gear" label="Settings"></ui-icon>
+      <ui-icon name="heart" label="Heart"></ui-icon>
+      <ui-icon name="star" label="Star"></ui-icon>
+      <ui-icon name="home" label="Home"></ui-icon>
+    </div>
+
+    <h3>Different Sizes</h3>
+    <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+      <ui-icon name="gear" size="small" label="Small gear"></ui-icon>
+      <ui-icon name="gear" size="medium" label="Medium gear"></ui-icon>
+      <ui-icon name="gear" size="large" label="Large gear"></ui-icon>
+      <ui-icon name="gear" size="x-large" label="Extra large gear"></ui-icon>
+    </div>
+
+    <h3>Different Colors</h3>
+    <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+      <ui-icon name="heart" color="primary" label="Primary heart"></ui-icon>
+      <ui-icon name="star" color="secondary" label="Secondary star"></ui-icon>
+      <ui-icon name="check-circle" color="success" label="Success check"></ui-icon>
+      <ui-icon name="exclamation-triangle" color="warning" label="Warning triangle"></ui-icon>
+      <ui-icon name="x-circle" color="danger" label="Danger x"></ui-icon>
+      <ui-icon name="info-circle" color="neutral" label="Neutral info"></ui-icon>
+    </div>
+
+    <h3>Interactive Icons</h3>
+    <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+      <ui-icon name="heart" color="primary" hoverable label="Hoverable heart"></ui-icon>
+      <ui-icon name="star" color="warning" clickable label="Clickable star"></ui-icon>
+      <ui-icon name="gear" color="neutral" spinning label="Spinning gear"></ui-icon>
+    </div>
+
+    <h3>Transformed Icons</h3>
+    <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+      <ui-icon name="arrow-right" color="primary" label="Normal arrow"></ui-icon>
+      <ui-icon name="arrow-right" color="primary" flip-horizontal label="Flipped horizontal"></ui-icon>
+      <ui-icon name="arrow-right" color="primary" flip-vertical label="Flipped vertical"></ui-icon>
+      <ui-icon name="arrow-right" color="primary" rotate="90" label="Rotated 90°"></ui-icon>
+    </div>
   </body>
 </html>

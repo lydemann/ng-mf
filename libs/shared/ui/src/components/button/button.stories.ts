@@ -176,7 +176,7 @@ export const WithPrefixIcon: Story = {
     const div = document.createElement('div');
     div.innerHTML = `
       <ui-button ${Object.entries(args).map(([key, value]) => `${key}="${value}"`).join(' ')}>
-        <sl-icon slot="prefix" name="upload"></sl-icon>
+        <ui-icon slot="prefix" name="upload" size="small"></ui-icon>
       </ui-button>
     `;
     return div.firstElementChild;
@@ -193,7 +193,7 @@ export const WithSuffixIcon: Story = {
     const div = document.createElement('div');
     div.innerHTML = `
       <ui-button ${Object.entries(args).map(([key, value]) => `${key}="${value}"`).join(' ')}>
-        <sl-icon slot="suffix" name="download"></sl-icon>
+        <ui-icon slot="suffix" name="download" size="small"></ui-icon>
       </ui-button>
     `;
     return div.firstElementChild;
@@ -211,7 +211,7 @@ export const IconOnlyRound: Story = {
     const div = document.createElement('div');
     div.innerHTML = `
       <ui-button ${Object.entries(args).map(([key, value]) => `${key}="${value}"`).join(' ')}>
-        <sl-icon slot="prefix" name="gear"></sl-icon>
+        <ui-icon name="gear" size="medium"></ui-icon>
       </ui-button>
     `;
     return div.firstElementChild;
@@ -273,7 +273,7 @@ export const ButtonGroup: Story = {
       <div style="display: flex; gap: 8px; align-items: center;">
         <ui-button text="Cancel" variant="neutral" type="button"></ui-button>
         <ui-button text="Save" variant="primary" type="button">
-          <sl-icon slot="prefix" name="check"></sl-icon>
+          <ui-icon slot="prefix" name="check" size="small"></ui-icon>
         </ui-button>
       </div>
     `;
@@ -287,9 +287,140 @@ export const ComplexButton: Story = {
     const div = document.createElement('div');
     div.innerHTML = `
       <ui-button text="Export Data" variant="primary" type="button" size="large">
-        <sl-icon slot="prefix" name="download"></sl-icon>
-        <sl-icon slot="suffix" name="arrow-right"></sl-icon>
+        <ui-icon slot="prefix" name="download" color="neutral" size="medium"></ui-icon>
+        <ui-icon slot="suffix" name="arrow-right" color="neutral" size="medium"></ui-icon>
       </ui-button>
+    `;
+    return div.firstElementChild;
+  },
+};
+
+// New stories showcasing ui-icon features in buttons
+export const ButtonWithColoredIcons: Story = {
+  render: () => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <ui-button text="Success Action" variant="success" type="button">
+          <ui-icon slot="prefix" name="check-circle" size="small"></ui-icon>
+        </ui-button>
+        <ui-button text="Warning Action" variant="warning" type="button">
+          <ui-icon slot="prefix" name="exclamation-triangle" size="small"></ui-icon>
+        </ui-button>
+        <ui-button text="Danger Action" variant="danger" type="button">
+          <ui-icon slot="prefix" name="x-circle" size="small"></ui-icon>
+        </ui-button>
+      </div>
+    `;
+    return div.firstElementChild;
+  },
+};
+
+export const ButtonWithAnimatedIcons: Story = {
+  render: () => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <ui-button text="Loading..." variant="primary" type="button" disabled>
+          <ui-icon slot="prefix" name="gear" spinning size="small"></ui-icon>
+        </ui-button>
+        <ui-button text="Refresh" variant="secondary" type="button">
+          <ui-icon slot="prefix" name="arrow-clockwise" size="small"></ui-icon>
+        </ui-button>
+      </div>
+    `;
+    return div.firstElementChild;
+  },
+};
+
+export const ButtonWithTransformedIcons: Story = {
+  render: () => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <ui-button text="Previous" variant="neutral" type="button">
+          <ui-icon slot="prefix" name="arrow-right" flip-horizontal size="small"></ui-icon>
+        </ui-button>
+        <ui-button text="Next" variant="primary" type="button">
+          <ui-icon slot="suffix" name="arrow-right" size="small"></ui-icon>
+        </ui-button>
+        <ui-button text="Expand" variant="secondary" type="button">
+          <ui-icon slot="suffix" name="chevron-down" size="small"></ui-icon>
+        </ui-button>
+      </div>
+    `;
+    return div.firstElementChild;
+  },
+};
+
+export const IconOnlyButtons: Story = {
+  render: () => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <ui-button text="" variant="primary" type="button" circle>
+          <ui-icon name="plus" size="medium"></ui-icon>
+        </ui-button>
+        <ui-button text="" variant="secondary" type="button" circle>
+          <ui-icon name="minus" size="medium"></ui-icon>
+        </ui-button>
+        <ui-button text="" variant="success" type="button" circle>
+          <ui-icon name="check" size="medium"></ui-icon>
+        </ui-button>
+        <ui-button text="" variant="danger" type="button" circle>
+          <ui-icon name="x" size="medium"></ui-icon>
+        </ui-button>
+      </div>
+    `;
+    return div.firstElementChild;
+  },
+};
+
+export const ButtonWithHoverableIcons: Story = {
+  render: () => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <ui-button text="Like" variant="primary" type="button">
+          <ui-icon slot="prefix" name="heart" color="danger" size="small" hoverable></ui-icon>
+        </ui-button>
+        <ui-button text="Star" variant="warning" type="button">
+          <ui-icon slot="prefix" name="star" color="warning" size="small" hoverable></ui-icon>
+        </ui-button>
+        <ui-button text="Share" variant="secondary" type="button">
+          <ui-icon slot="prefix" name="share" color="neutral" size="small" hoverable></ui-icon>
+        </ui-button>
+      </div>
+    `;
+    return div.firstElementChild;
+  },
+};
+
+// Test story for icon-only round buttons to ensure proper centering
+export const IconOnlyRoundTest: Story = {
+  render: () => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+        <div style="text-align: center;">
+          <ui-button text="" variant="primary" type="button" circle size="small">
+            <ui-icon name="gear" size="small"></ui-icon>
+          </ui-button>
+          <div style="margin-top: 8px; font-size: 12px;">Small</div>
+        </div>
+        <div style="text-align: center;">
+          <ui-button text="" variant="primary" type="button" circle size="medium">
+            <ui-icon name="gear" size="medium"></ui-icon>
+          </ui-button>
+          <div style="margin-top: 8px; font-size: 12px;">Medium</div>
+        </div>
+        <div style="text-align: center;">
+          <ui-button text="" variant="primary" type="button" circle size="large">
+            <ui-icon name="gear" size="large"></ui-icon>
+          </ui-button>
+          <div style="margin-top: 8px; font-size: 12px;">Large</div>
+        </div>
+      </div>
     `;
     return div.firstElementChild;
   },

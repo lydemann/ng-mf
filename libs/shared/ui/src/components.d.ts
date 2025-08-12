@@ -7,8 +7,10 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { SidebarSection } from "./components/sidebar/sidebar";
 import { default as SlButton } from "@shoelace-style/shoelace";
+import { IconColor, IconSize } from "./components/icon/icon";
 export { SidebarSection } from "./components/sidebar/sidebar";
 export { default as SlButton } from "@shoelace-style/shoelace";
+export { IconColor, IconSize } from "./components/icon/icon";
 export namespace Components {
     interface MyComponent {
         /**
@@ -141,6 +143,65 @@ export namespace Components {
          */
         "variant": SlButton['variant'];
     }
+    interface UiIcon {
+        /**
+          * Custom CSS class to apply
+         */
+        "class": string;
+        /**
+          * Whether the icon should be clickable
+          * @default false
+         */
+        "clickable": boolean;
+        /**
+          * The color of the icon
+          * @default null
+         */
+        "color": IconColor;
+        /**
+          * Whether the icon is decorative (no aria-label needed)
+          * @default false
+         */
+        "decorative": boolean;
+        /**
+          * Whether the icon should be flipped horizontally
+          * @default false
+         */
+        "flipHorizontal": boolean;
+        /**
+          * Whether the icon should be flipped vertically
+          * @default false
+         */
+        "flipVertical": boolean;
+        /**
+          * Whether the icon should have a hover effect
+          * @default false
+         */
+        "hoverable": boolean;
+        /**
+          * The label for accessibility (aria-label)
+         */
+        "label": string;
+        /**
+          * The name of the icon to display
+         */
+        "name": string;
+        /**
+          * Whether the icon should be rotated
+          * @default 0
+         */
+        "rotate": 0 | 90 | 180 | 270;
+        /**
+          * The size of the icon
+          * @default 'medium'
+         */
+        "size": IconSize;
+        /**
+          * Whether the icon should be spinning
+          * @default false
+         */
+        "spinning": boolean;
+    }
 }
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
@@ -161,10 +222,17 @@ declare global {
         prototype: HTMLUiButtonElement;
         new (): HTMLUiButtonElement;
     };
+    interface HTMLUiIconElement extends Components.UiIcon, HTMLStencilElement {
+    }
+    var HTMLUiIconElement: {
+        prototype: HTMLUiIconElement;
+        new (): HTMLUiIconElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
         "shared-sidebar": HTMLSharedSidebarElement;
         "ui-button": HTMLUiButtonElement;
+        "ui-icon": HTMLUiIconElement;
     }
 }
 declare namespace LocalJSX {
@@ -299,10 +367,70 @@ declare namespace LocalJSX {
          */
         "variant"?: SlButton['variant'];
     }
+    interface UiIcon {
+        /**
+          * Custom CSS class to apply
+         */
+        "class"?: string;
+        /**
+          * Whether the icon should be clickable
+          * @default false
+         */
+        "clickable"?: boolean;
+        /**
+          * The color of the icon
+          * @default null
+         */
+        "color"?: IconColor;
+        /**
+          * Whether the icon is decorative (no aria-label needed)
+          * @default false
+         */
+        "decorative"?: boolean;
+        /**
+          * Whether the icon should be flipped horizontally
+          * @default false
+         */
+        "flipHorizontal"?: boolean;
+        /**
+          * Whether the icon should be flipped vertically
+          * @default false
+         */
+        "flipVertical"?: boolean;
+        /**
+          * Whether the icon should have a hover effect
+          * @default false
+         */
+        "hoverable"?: boolean;
+        /**
+          * The label for accessibility (aria-label)
+         */
+        "label"?: string;
+        /**
+          * The name of the icon to display
+         */
+        "name"?: string;
+        /**
+          * Whether the icon should be rotated
+          * @default 0
+         */
+        "rotate"?: 0 | 90 | 180 | 270;
+        /**
+          * The size of the icon
+          * @default 'medium'
+         */
+        "size"?: IconSize;
+        /**
+          * Whether the icon should be spinning
+          * @default false
+         */
+        "spinning"?: boolean;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
         "shared-sidebar": SharedSidebar;
         "ui-button": UiButton;
+        "ui-icon": UiIcon;
     }
 }
 export { LocalJSX as JSX };
@@ -312,6 +440,7 @@ declare module "@stencil/core" {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "shared-sidebar": LocalJSX.SharedSidebar & JSXBase.HTMLAttributes<HTMLSharedSidebarElement>;
             "ui-button": LocalJSX.UiButton & JSXBase.HTMLAttributes<HTMLUiButtonElement>;
+            "ui-icon": LocalJSX.UiIcon & JSXBase.HTMLAttributes<HTMLUiIconElement>;
         }
     }
 }

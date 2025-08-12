@@ -1,16 +1,17 @@
 // Button Component Styles
 // This component wraps Shoelace sl-button, so minimal custom styling is needed
 @import '../../style/variables.scss';
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :host {
-  display: inline-block;
+  @apply inline-block;
 }
 
 // Custom width support
 :host([full-width]) {
-  display: block;
-  width: 100%;
+  @apply block w-full;
 }
 
 // Ensure proper icon sizing for round buttons
@@ -22,4 +23,54 @@
 // Custom min-width support
 :host([min-width]) {
   min-width: var(--min-width);
+}
+
+// Ensure icons inside buttons inherit the button's text color
+:host {
+  --button-text-color: currentColor;
+}
+
+// Apply button text color to any icons inside
+:host ::slotted(ui-icon),
+:host ::slotted(sl-icon) {
+  color: var(--button-text-color) !important;
+}
+
+// Add proper spacing between text and icons using Tailwind @apply
+:host ::slotted(ui-icon[slot="prefix"]),
+:host ::slotted(sl-icon[slot="prefix"]) {
+  @apply mr-2;
+}
+
+:host ::slotted(ui-icon[slot="suffix"]),
+:host ::slotted(sl-icon[slot="suffix"]) {
+  @apply ml-2;
+}
+
+// Ensure proper centering for round/icon-only buttons
+:host([circle]) ::slotted(ui-icon),
+:host([circle]) ::slotted(sl-icon) {
+  @apply mx-auto;
+}
+
+// Additional centering for icon-only buttons (no text content)
+:host([circle]) sl-button {
+  @apply flex items-center justify-center;
+}
+
+// Ensure proper icon sizing and alignment
+:host ::slotted(ui-icon),
+:host ::slotted(sl-icon) {
+  @apply inline-flex items-center align-middle;
+}
+
+// Handle icon sizing based on button size
+:host([size="small"]) ::slotted(ui-icon),
+:host([size="small"]) ::slotted(sl-icon) {
+  @apply text-sm;
+}
+
+:host([size="large"]) ::slotted(ui-icon),
+:host([size="large"]) ::slotted(sl-icon) {
+  @apply text-lg;
 } 

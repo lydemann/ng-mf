@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:host {
+  @apply inline-block;
+  line-height: 1;
+  color: inherit;
+}
+
+// Ensure icons inside buttons always inherit the button's text color
+:host {
+  @apply text-current;
+}
+
+.ui-icon {
+  @apply inline-block align-middle transition-all duration-200 ease-in-out;
+  color: inherit;
+
+  // Size variants
+  &--size-small {
+    @apply text-base;
+  }
+
+  &--size-medium {
+    @apply text-lg;
+  }
+
+  &--size-large {
+    @apply text-xl;
+  }
+
+  &--size-x-large {
+    @apply text-2xl;
+  }
+
+  // Color variants - only apply when not inside a button
+  &--color-primary {
+    color: var(--sl-color-primary-600);
+  }
+
+  &--color-secondary {
+    color: var(--sl-color-neutral-600);
+  }
+
+  &--color-success {
+    color: var(--sl-color-success-600);
+  }
+
+  &--color-warning {
+    color: var(--sl-color-warning-600);
+  }
+
+  &--color-danger {
+    color: var(--sl-color-danger-600);
+  }
+
+  &--color-neutral {
+    color: var(--sl-color-neutral-600);
+  }
+
+  // Interactive states
+  &--clickable {
+    @apply cursor-pointer;
+    pointer-events: auto;
+
+    &:hover {
+      @apply opacity-80 scale-110;
+    }
+
+    &:active {
+      @apply scale-95;
+    }
+  }
+
+  &--hoverable {
+    &:hover {
+      @apply opacity-80 scale-105;
+    }
+  }
+
+  // Animation states
+  &--spinning {
+    animation: spin 1s linear infinite;
+  }
+}
+
+// Spinning animation
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Focus styles for accessibility
+.ui-icon:focus {
+  @apply outline-2 outline outline-offset-2 rounded;
+  outline-color: var(--sl-color-primary-500);
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .ui-icon {
+    filter: contrast(1.2);
+  }
+}
+
+// This will be handled by the button component's ::slotted rules
+
+// Reduced motion support
+@media (prefers-reduced-motion: reduce) {
+  .ui-icon {
+    transition: none;
+    
+    &--spinning {
+      animation: none;
+    }
+  }
+}
