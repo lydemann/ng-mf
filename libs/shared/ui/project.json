@@ -107,7 +107,7 @@
       "executor": "@nx/storybook:build",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "uiFramework": "@storybook/html-webpack5",
+        "uiFramework": "@storybook/web-components-vite",
         "outputPath": "dist/storybook/shared-ui",
         "config": {
           "configFolder": "libs/shared/ui/.storybook"

@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/core-common';
+import type { StorybookConfig } from '@storybook/web-components-vite';
 
 export default {
   stories: [
@@ -8,20 +8,12 @@ export default {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
   ],
-  core: {
-    builder: {
-      name: 'webpack5',
-      options: {
-        fsCache: false,
-        lazyCompilation: false,
-      },
-    },
+  framework: {
+    name: '@storybook/web-components-vite',
+    options: {}
   },
-  framework: '@storybook/web-components-vite',
   logLevel: 'warn',
   features: {
-    babelModeV7: true,
     storyStoreV7: true,
-    postcss: true,
   },
 } as StorybookConfig;
