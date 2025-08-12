@@ -9,6 +9,7 @@
     "build": {
       "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["shared-ui:build"],
       "options": {
         "outputPath": "dist/apps/dashboard",
         "index": "apps/dashboard/src/index.html",
@@ -60,6 +61,7 @@
     "serve": {
       "continuous": true,
       "executor": "@nx/angular:module-federation-dev-server",
+      "dependsOn": ["shared-ui:build"],
       "options": {
         "port": 4200,
         "publicHost": "http://localhost:4200"
