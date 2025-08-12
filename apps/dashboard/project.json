@@ -93,6 +93,16 @@
         "port": 4200,
         "spa": true
       }
+    },
+    "serve-all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build shared-ui --watch",
+          "nx serve dashboard"
+        ],
+        "parallel": true
+      }
     }
   }
 }
