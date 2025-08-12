@@ -211,7 +211,7 @@ export const IconOnlyRound: Story = {
     const div = document.createElement('div');
     div.innerHTML = `
       <ui-button ${Object.entries(args).map(([key, value]) => `${key}="${value}"`).join(' ')}>
-        <ui-icon name="gear" size="medium"></ui-icon>
+        <ui-icon name="gear-six" size="medium"></ui-icon>
       </ui-button>
     `;
     return div.firstElementChild;
@@ -305,7 +305,7 @@ export const ButtonWithColoredIcons: Story = {
           <ui-icon slot="prefix" name="check-circle" size="small"></ui-icon>
         </ui-button>
         <ui-button text="Warning Action" variant="warning" type="button">
-          <ui-icon slot="prefix" name="exclamation-triangle" size="small"></ui-icon>
+          <ui-icon slot="prefix" name="triangle" size="small"></ui-icon>
         </ui-button>
         <ui-button text="Danger Action" variant="danger" type="button">
           <ui-icon slot="prefix" name="x-circle" size="small"></ui-icon>
@@ -322,7 +322,7 @@ export const ButtonWithAnimatedIcons: Story = {
     div.innerHTML = `
       <div style="display: flex; gap: 12px; align-items: center;">
         <ui-button text="Loading..." variant="primary" type="button" disabled>
-          <ui-icon slot="prefix" name="gear" spinning size="small"></ui-icon>
+          <ui-icon slot="prefix" name="gear-six" spinning size="small"></ui-icon>
         </ui-button>
         <ui-button text="Refresh" variant="secondary" type="button">
           <ui-icon slot="prefix" name="arrow-clockwise" size="small"></ui-icon>
@@ -345,7 +345,7 @@ export const ButtonWithTransformedIcons: Story = {
           <ui-icon slot="suffix" name="arrow-right" size="small"></ui-icon>
         </ui-button>
         <ui-button text="Expand" variant="secondary" type="button">
-          <ui-icon slot="suffix" name="chevron-down" size="small"></ui-icon>
+          <ui-icon slot="suffix" name="caret-down" size="small"></ui-icon>
         </ui-button>
       </div>
     `;
@@ -404,19 +404,19 @@ export const IconOnlyRoundTest: Story = {
       <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
         <div style="text-align: center;">
           <ui-button text="" variant="primary" type="button" circle size="small">
-            <ui-icon name="gear" size="small"></ui-icon>
+            <ui-icon name="gear-six" size="small"></ui-icon>
           </ui-button>
           <div style="margin-top: 8px; font-size: 12px;">Small</div>
         </div>
         <div style="text-align: center;">
           <ui-button text="" variant="primary" type="button" circle size="medium">
-            <ui-icon name="gear" size="medium"></ui-icon>
+            <ui-icon name="gear-six" size="medium"></ui-icon>
           </ui-button>
           <div style="margin-top: 8px; font-size: 12px;">Medium</div>
         </div>
         <div style="text-align: center;">
           <ui-button text="" variant="primary" type="button" circle size="large">
-            <ui-icon name="gear" size="large"></ui-icon>
+            <ui-icon name="gear-six" size="large"></ui-icon>
           </ui-button>
           <div style="margin-top: 8px; font-size: 12px;">Large</div>
         </div>

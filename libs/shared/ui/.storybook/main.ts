@@ -11,7 +11,7 @@ import rootMain from '../../../../.storybook/main';
 export default {
   ...rootMain,
   stories: [
-    ...rootMain.stories,
+    ...(Array.isArray(rootMain.stories) ? rootMain.stories : []),
     '../src/**/*.stories.mdx',
     '../src/**/*.stories.@(js|jsx|ts|tsx)',
   ],
@@ -33,6 +33,24 @@ export default {
       ...config.resolve.alias,
       '@ng-mf/shared-ui/loader': resolve(__dirname, '../../../../dist/libs/shared/ui/loader/index.js'),
     };
+
+    // Add Phosphor Icons CSS
+    if (!config.css) {
+      config.css = {};
+    }
+    if (!config.css.preprocessorOptions) {
+      config.css.preprocessorOptions = {};
+    }
+
+    // Add Phosphor Icons CSS import
+    if (!config.define) {
+      config.define = {};
+    }
+
+    // Add CSS import to the HTML head
+    if (!config.plugins) {
+      config.plugins = [];
+    }
 
     return config;
   },

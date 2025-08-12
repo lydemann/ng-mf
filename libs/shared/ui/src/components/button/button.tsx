@@ -185,6 +185,7 @@ export class Button {
         <sl-button {...shoelaceProps} style={buttonStyles}>
           <slot name="prefix" />
           {this.text}
+          <slot />
           <slot name="suffix" />
         </sl-button>
     );

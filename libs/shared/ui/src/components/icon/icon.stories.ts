@@ -104,9 +104,18 @@ const meta: Meta = {
         defaultValue: { summary: '0' },
       },
     },
+    type: {
+      control: { type: 'select' },
+      options: ['regular', 'bold', 'fill', 'duotone', 'light', 'thin'],
+      description: 'The type/weight of the Phosphor icon',
+      table: {
+        type: { summary: 'regular | bold | fill | duotone | light | thin' },
+        defaultValue: { summary: 'regular' },
+      },
+    },
   },
   args: {
-    name: 'gear',
+    name: 'gear-six',
     size: 'medium',
     color: 'neutral',
     decorative: false,
@@ -116,6 +125,7 @@ const meta: Meta = {
     flipHorizontal: false,
     flipVertical: false,
     rotate: 0,
+    type: 'regular',
   },
 };
 
@@ -125,7 +135,7 @@ type Story = StoryObj;
 // Basic icon story
 export const Default: Story = {
   args: {
-    name: 'gear',
+    name: 'gear-six',
     size: 'medium',
     color: 'neutral',
   },
@@ -135,10 +145,10 @@ export const Default: Story = {
 export const Sizes: Story = {
   render: () => html`
     <div style="display: flex; gap: 1rem; align-items: center;">
-      <ui-icon name="gear" size="small" label="Small gear icon"></ui-icon>
-      <ui-icon name="gear" size="medium" label="Medium gear icon"></ui-icon>
-      <ui-icon name="gear" size="large" label="Large gear icon"></ui-icon>
-      <ui-icon name="gear" size="x-large" label="Extra large gear icon"></ui-icon>
+      <ui-icon name="gear-six" size="small" label="Small gear icon"></ui-icon>
+      <ui-icon name="gear-six" size="medium" label="Medium gear icon"></ui-icon>
+      <ui-icon name="gear-six" size="large" label="Large gear icon"></ui-icon>
+      <ui-icon name="gear-six" size="x-large" label="Extra large gear icon"></ui-icon>
     </div>
   `,
   parameters: {
@@ -157,9 +167,9 @@ export const Colors: Story = {
       <ui-icon name="heart" color="primary" label="Primary heart icon"></ui-icon>
       <ui-icon name="star" color="secondary" label="Secondary star icon"></ui-icon>
       <ui-icon name="check-circle" color="success" label="Success check icon"></ui-icon>
-      <ui-icon name="exclamation-triangle" color="warning" label="Warning triangle icon"></ui-icon>
+      <ui-icon name="triangle" color="warning" label="Warning triangle icon"></ui-icon>
       <ui-icon name="x-circle" color="danger" label="Danger x icon"></ui-icon>
-      <ui-icon name="info-circle" color="neutral" label="Neutral info icon"></ui-icon>
+      <ui-icon name="info" color="neutral" label="Neutral info icon"></ui-icon>
     </div>
   `,
   parameters: {
@@ -171,13 +181,52 @@ export const Colors: Story = {
   },
 };
 
+// Icon weights/types story
+export const IconWeights: Story = {
+  render: () => html`
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+      <div style="text-align: center;">
+        <ui-icon name="heart" type="thin" size="large" label="Thin heart icon"></ui-icon>
+        <div style="margin-top: 0.5rem; font-size: 0.875rem;">Thin</div>
+      </div>
+      <div style="text-align: center;">
+        <ui-icon name="heart" type="light" size="large" label="Light heart icon"></ui-icon>
+        <div style="margin-top: 0.5rem; font-size: 0.875rem;">Light</div>
+      </div>
+      <div style="text-align: center;">
+        <ui-icon name="heart" type="regular" size="large" label="Regular heart icon"></ui-icon>
+        <div style="margin-top: 0.5rem; font-size: 0.875rem;">Regular</div>
+      </div>
+      <div style="text-align: center;">
+        <ui-icon name="heart" type="bold" size="large" label="Bold heart icon"></ui-icon>
+        <div style="margin-top: 0.5rem; font-size: 0.875rem;">Bold</div>
+      </div>
+      <div style="text-align: center;">
+        <ui-icon name="heart" type="fill" size="large" label="Fill heart icon"></ui-icon>
+        <div style="margin-top: 0.5rem; font-size: 0.875rem;">Fill</div>
+      </div>
+      <div style="text-align: center;">
+        <ui-icon name="heart" type="duotone" size="large" label="Duotone heart icon"></ui-icon>
+        <div style="margin-top: 0.5rem; font-size: 0.875rem;">Duotone</div>
+      </div>
+    </div>
+  `,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Phosphor Icons support six different weights: thin, light, regular, bold, fill, and duotone. Use the `type` prop to set the icon weight.',
+      },
+    },
+  },
+};
+
 // Interactive states story
 export const Interactive: Story = {
   render: () => html`
     <div style="display: flex; gap: 1rem; align-items: center;">
       <ui-icon name="heart" color="primary" hoverable label="Hoverable heart icon"></ui-icon>
       <ui-icon name="star" color="warning" clickable label="Clickable star icon"></ui-icon>
-      <ui-icon name="gear" color="neutral" spinning label="Spinning gear icon"></ui-icon>
+      <ui-icon name="gear-six" color="neutral" spinning label="Spinning gear icon"></ui-icon>
     </div>
   `,
   parameters: {

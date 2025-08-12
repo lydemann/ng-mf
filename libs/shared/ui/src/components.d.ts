@@ -183,7 +183,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * The name of the icon to display
+          * The name of the icon to display (Phosphor icon name)
          */
         "name": string;
         /**
@@ -201,6 +201,11 @@ export namespace Components {
           * @default false
          */
         "spinning": boolean;
+        /**
+          * The type/weight of the Phosphor icon (regular, bold, fill, duotone, light, thin)
+          * @default 'regular'
+         */
+        "type": 'regular' | 'bold' | 'fill' | 'duotone' | 'light' | 'thin';
     }
 }
 declare global {
@@ -407,7 +412,7 @@ declare namespace LocalJSX {
          */
         "label"?: string;
         /**
-          * The name of the icon to display
+          * The name of the icon to display (Phosphor icon name)
          */
         "name"?: string;
         /**
@@ -425,6 +430,11 @@ declare namespace LocalJSX {
           * @default false
          */
         "spinning"?: boolean;
+        /**
+          * The type/weight of the Phosphor icon (regular, bold, fill, duotone, light, thin)
+          * @default 'regular'
+         */
+        "type"?: 'regular' | 'bold' | 'fill' | 'duotone' | 'light' | 'thin';
     }
     interface IntrinsicElements {
         "my-component": MyComponent;

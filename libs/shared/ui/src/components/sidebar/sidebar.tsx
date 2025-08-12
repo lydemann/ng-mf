@@ -44,14 +44,35 @@ export class Sidebar {
 
   renderIcon(iconName: string) {
     const iconMap = {
-      'house': '🏠',
-      'chat': '💬',
-      'document': '📄',
-      'arrow-right': '▶️',
-      'arrow-left': '◀️',
-      'user': '👤',
+      'house': 'house',
+      'chat': 'chat-circle',
+      'document': 'file-text',
+      'arrow-right': 'caret-right',
+      'arrow-left': 'caret-left',
+      'user': 'user',
+      'dashboard': 'squares-four',
+      'settings': 'gear-six',
+      'analytics': 'chart-line',
+      'users': 'users',
+      'products': 'package',
+      'orders': 'shopping-cart',
+      'reports': 'chart-bar',
+      'calendar': 'calendar',
+      'notifications': 'bell',
+      'search': 'magnifying-glass',
+      'logout': 'sign-out',
+      'profile': 'user-circle',
+      'help': 'question',
+      'info': 'info',
+      'printer': 'printer',
+      'folder': 'folder',
+      'broadcast': 'broadcast',
+      'lightning': 'lightning',
+      'user-circle': 'user-circle',
     };
-    return iconMap[iconName] || '📄';
+    
+    const phosphorIconName = iconMap[iconName] || 'file-text';
+    return <ui-icon name={phosphorIconName} size="medium" color="neutral"></ui-icon>;
   }
 
   renderItem(item: SidebarItem) {

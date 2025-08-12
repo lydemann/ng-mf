@@ -1,9 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
 
-// Import Shoelace icon component
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
-import { SlIcon } from '@shoelace-style/shoelace';
-
 export type IconSize = 'small' | 'medium' | 'large' | 'x-large';
 export type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral' | null;
 
@@ -15,7 +11,7 @@ export type IconColor = 'primary' | 'secondary' | 'success' | 'warning' | 'dange
 export class Icon {
 
   /**
-   * The name of the icon to display
+   * The name of the icon to display (Phosphor icon name)
    */
   @Prop() name: string;
 
@@ -75,17 +71,9 @@ export class Icon {
   @Prop() rotate: 0 | 90 | 180 | 270 = 0;
 
   /**
-   * Map our design system props to Shoelace props
+   * The type/weight of the Phosphor icon (regular, bold, fill, duotone, light, thin)
    */
-  private getShoelaceProps() {
-    const props = {
-      name: this.name,
-      label: this.decorative ? undefined : this.label,
-      class: this.class,
-    } as Partial<SlIcon>;
-
-    return props;
-  }
+  @Prop() type: 'regular' | 'bold' | 'fill' | 'duotone' | 'light' | 'thin' = 'regular';
 
   /**
    * Get icon styles based on our design system props
@@ -178,16 +166,33 @@ export class Icon {
     return classes.join(' ');
   }
 
+  /**
+   * Get the Phosphor icon class name
+   */
+  private getPhosphorIconClass() {
+    if (!this.name) return '';
+    
+    // Phosphor icons use kebab-case, so we keep the name as is
+    const iconName = this.name;
+    
+    // For different weights, we need to import the specific CSS or use different class names
+    // For now, we'll use the regular weight and handle other weights through CSS
+    const weightClass = this.type !== 'regular' ? `-${this.type}` : '';
+    
+    return `ph ph-${iconName}${weightClass}`;
+  }
+
   render() {
-    const shoelaceProps = this.getShoelaceProps();
     const iconStyles = this.getIconStyles();
     const iconClasses = this.getIconClasses();
+    const phosphorIconClass = this.getPhosphorIconClass();
 
     return (
-      <sl-icon 
-        {...shoelaceProps} 
+      <i 
+        class={`${iconClasses} ${phosphorIconClass}`}
         style={iconStyles}
-        class={iconClasses}
+        aria-label={this.decorative ? undefined : this.label}
+        role={this.decorative ? 'presentation' : undefined}
       />
     );
   }
