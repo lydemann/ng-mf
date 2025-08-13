@@ -1,6 +1,7 @@
 <ul class="remote-menu">
-  <li><a routerLink="/">Home</a></li>
-  <li><a routerLink="login">Login</a></li>
+  <li><a routerLink="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+  <li><a routerLink="login" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Login</a></li>
+  <li><a routerLink="bookstore" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{ exact: true }">Bookstore</a></li>
 </ul>
 
 <!-- Stencil Component Integration -->
