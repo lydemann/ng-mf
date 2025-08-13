@@ -1,10 +1,9 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
 import { SharedUiModule } from './shared-ui.module';
 
 @Component({
-  imports: [NxWelcome, RouterModule, SharedUiModule],
+  imports: [RouterModule, SharedUiModule],
   selector: 'ng-mf-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',

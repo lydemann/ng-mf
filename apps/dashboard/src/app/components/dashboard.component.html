@@ -1,0 +1,111 @@
+@if (error()) {
+<div class="error">
+  Error loading dashboard: {{ error() }}
+</div>
+} @else if (loading()) {
+<div class="loading">
+  Loading dashboard data...
+</div>
+} @else if (dashboardData();) {
+<div class="dashboard-container">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="user-info">
+      <div>
+        <h1>Welcome back, {{ dashboardData()!.user.name }}!</h1>
+        <p class="text-gray-600">{{ dashboardData()!.user.email }} • {{ dashboardData()!.user.role }}</p>
+      </div>
+    </div>
+    <div class="last-updated">
+      Last updated: {{ dashboardData()?.lastUpdated | date:'short' }}
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="app-navigation">
+    <h2>Applications</h2>
+    <div class="nav-links">
+      <a routerLink="/dashboard" class="nav-link active">
+        📊 Dashboard
+      </a>
+      <a routerLink="/bookstore" class="nav-link">
+        📚 Bookstore
+      </a>
+      <a routerLink="/login" class="nav-link">
+        🔐 Login
+      </a>
+    </div>
+  </nav>
+
+  <!-- Analytics Overview -->
+  <section class="analytics-overview">
+    <div class="metric-card">
+      <h3>Total Users</h3>
+      <p class="metric-value">{{ dashboardData()!.analytics.totalUsers | number }}</p>
+    </div>
+    <div class="metric-card">
+      <h3>Active Users</h3>
+      <p class="metric-value">{{ dashboardData()!.analytics.activeUsers | number }}</p>
+    </div>
+    <div class="metric-card">
+      <h3>Revenue</h3>
+      <p class="metric-value">${{ dashboardData()!.analytics.revenue | number:'1.0-0' }}</p>
+    </div>
+    <div class="metric-card">
+      <h3>Growth</h3>
+      <p class="metric-value" [class.positive]="dashboardData()!.analytics.growth > 0">
+        {{ dashboardData()!.analytics.growth > 0 ? '+' : '' }}{{ dashboardData()!.analytics.growth }}%
+      </p>
+    </div>
+  </section>
+
+  <!-- Widgets Grid -->
+  <section class="widgets-grid">
+    @for (widget of dashboardData()?.widgets; track widget.id) {
+    <div class="widget-card"
+         [style.grid-area]="widget.position.x + ' / ' + widget.position.y + ' / span ' + widget.position.w + ' / span ' + widget.position.h">
+      <div class="widget-header">
+        <h3>{{ widget.name }}</h3>
+        <span class="widget-type">{{ widget.type }}</span>
+      </div>
+      <div class="widget-content">
+        <p>Widget ID: {{ widget.id }}</p>
+        <p>Config: {{ widget.config | json }}</p>
+      </div>
+    </div>
+    }
+  </section>
+
+  <!-- Notifications -->
+  <section class="notifications">
+    <h2>Notifications</h2>
+    <div class="notification-list">
+      @for (notification of dashboardData()?.notifications; track notification.id) {
+      <button class="notification-item"
+           [class.read]="notification.read"
+           (click)="markAsRead(notification.id)"
+           (keydown.enter)="markAsRead(notification.id)"
+           (keydown.space)="markAsRead(notification.id)">
+        <div class="notification-content">
+          <p class="notification-message">{{ notification.message }}</p>
+          <p class="notification-time">{{ notification.timestamp | date:'short' }}</p>
+        </div>
+        <span class="notification-type" [class]="notification.type">
+          {{ notification.type }}
+        </span>
+      </button>
+      }
+    </div>
+  </section>
+
+  <!-- Actions -->
+  <section class="actions">
+    <button (click)="createNewWidget()" class="btn-primary">
+      Create New Widget
+    </button>
+    <button (click)="refreshData()" class="btn-secondary">
+      Refresh Data
+    </button>
+  </section>
+</div>
+}

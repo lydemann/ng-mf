@@ -1,0 +1,136 @@
+<div class="bookstore-container">
+  <header class="bookstore-header">
+    <h1>📚 Bookstore</h1>
+    <div class="header-actions">
+      <button 
+        class="btn btn-secondary" 
+        (click)="toggleOnSaleFilter()"
+        [class.active]="showOnSaleOnly">
+        {{ showOnSaleOnly ? 'Show All Books' : 'Show On Sale Only' }}
+      </button>
+      <button 
+        class="btn btn-primary" 
+        (click)="showCreateForm = !showCreateForm">
+        {{ showCreateForm ? 'Cancel' : 'Add New Book' }}
+      </button>
+    </div>
+  </header>
+
+  <div class="bookstore-content">
+    <!-- Error Message -->
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+
+    <!-- Create Book Form -->
+    <div *ngIf="showCreateForm" class="create-book-form">
+      <h3>Add New Book</h3>
+      <form (ngSubmit)="createBook()" #bookForm="ngForm">
+        <div class="form-group">
+          <label for="title">Title *</label>
+          <input 
+            type="text" 
+            id="title" 
+            name="title" 
+            [(ngModel)]="newBook.title" 
+            required 
+            class="form-control">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="price">Price *</label>
+            <input 
+              type="number" 
+              id="price" 
+              name="price" 
+              [(ngModel)]="newBook.price" 
+              min="0" 
+              step="0.01" 
+              required 
+              class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="pageCount">Pages *</label>
+            <input 
+              type="number" 
+              id="pageCount" 
+              name="pageCount" 
+              [(ngModel)]="newBook.pageCount" 
+              min="1" 
+              required 
+              class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input 
+              type="checkbox" 
+              [(ngModel)]="newBook.onSale" 
+              name="onSale">
+            On Sale
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button 
+            type="submit" 
+            class="btn btn-primary" 
+            [disabled]="loading || !bookForm.form.valid">
+            {{ loading ? 'Creating...' : 'Create Book' }}
+          </button>
+          <button 
+            type="button" 
+            class="btn btn-secondary" 
+            (click)="showCreateForm = false">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading && !showCreateForm" class="loading">
+      <div class="spinner"></div>
+      <p>Loading books...</p>
+    </div>
+
+    <!-- Books List -->
+    <div *ngIf="!loading && books.length > 0" class="books-grid">
+      <div *ngFor="let book of books" class="book-card">
+        <div class="book-header">
+          <h3 class="book-title">{{ book.title }}</h3>
+          <span *ngIf="book.onSale" class="sale-badge">ON SALE</span>
+        </div>
+        
+        <div class="book-details">
+          <p class="book-price">{{ formatPrice(book.price) }}</p>
+          <p class="book-pages">{{ book.pageCount }} pages</p>
+          <p class="book-updated">Updated: {{ formatDate(book.lastUpdated) }}</p>
+          <p class="book-updated-by">By: {{ book.lastUpdatedBy }}</p>
+        </div>
+
+        <div class="book-actions">
+          <button 
+            class="btn btn-danger btn-sm" 
+            (click)="deleteBook(book.id)"
+            [disabled]="loading">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!loading && books.length === 0" class="empty-state">
+      <p>No books found.</p>
+      <button 
+        class="btn btn-primary" 
+        (click)="showCreateForm = true">
+        Add Your First Book
+      </button>
+    </div>
+  </div>
+</div>
