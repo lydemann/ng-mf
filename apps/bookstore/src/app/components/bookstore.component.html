@@ -106,9 +106,9 @@
         </div>
         
         <div class="book-details">
-          <p class="book-price">{{ formatPrice(book.price) }}</p>
+          <p class="book-price">{{ formatPrice(book.price ?? 0) }}</p>
           <p class="book-pages">{{ book.pageCount }} pages</p>
-          <p class="book-updated">Updated: {{ formatDate(book.lastUpdated) }}</p>
+          <p class="book-updated">Updated: {{ formatDate(book.lastUpdated ?? '') }}</p>
           <p class="book-updated-by">By: {{ book.lastUpdatedBy }}</p>
         </div>
 

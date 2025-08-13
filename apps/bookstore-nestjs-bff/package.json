@@ -1,0 +1,9 @@
+{
+  "name": "bookstore-nestjs-bff",
+  "version": "1.0.0",
+  "scripts": {
+    "generate:models": "openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o src/generated --additional-properties=supportsES6=true,npmName=@bookstore-nestjs-bff/api,withInterfaces=true",
+    "generate:dtos": "npx openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o src/generated --additional-properties=supportsES6=true,npmName=@bookstore-nestjs-bff/api,withInterfaces=true --use-docker",
+    "prebuild": "npm run generate:models"
+  }
+}

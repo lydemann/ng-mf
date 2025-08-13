@@ -2,8 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
-import type { Book, CreateBookInput } from '../types/bookstore.types';
-import { TrpcService } from '../services/trpc.service';
+import { BookstoreNestjsService, Book, BookCreate } from '../services/bookstore-nestjs.service';
 
 @Component({
   selector: 'ng-mf-bookstore',
@@ -13,7 +12,7 @@ import { TrpcService } from '../services/trpc.service';
   styleUrls: ['./bookstore.component.scss'],
 })
 export class BookstoreComponent implements OnInit {
-  private trpc = inject(TrpcService);
+  private bookstoreService = inject(BookstoreNestjsService);
 
   books: Book[] = [];
   loading = false;
@@ -22,7 +21,7 @@ export class BookstoreComponent implements OnInit {
   showCreateForm = false;
 
   // Form data for creating new books
-  newBook: CreateBookInput = {
+  newBook: BookCreate = {
     title: '',
     price: 0,
     pageCount: 0,
@@ -38,9 +37,7 @@ export class BookstoreComponent implements OnInit {
     this.error = null;
 
     try {
-      this.books = await firstValueFrom(this.trpc.getBooks({
-        onSale: this.showOnSaleOnly,
-      }));
+      this.books = await firstValueFrom(this.bookstoreService.getBooks(this.showOnSaleOnly));
     } catch (err) {
       this.error = 'Failed to load books';
       console.error('Error loading books:', err);
@@ -59,7 +56,7 @@ export class BookstoreComponent implements OnInit {
     this.error = null;
 
     try {
-      const createdBook = await firstValueFrom(this.trpc.createBook(this.newBook));
+      const createdBook = await firstValueFrom(this.bookstoreService.createBook(this.newBook));
       this.books.push(createdBook);
       this.resetForm();
       this.showCreateForm = false;
@@ -80,7 +77,7 @@ export class BookstoreComponent implements OnInit {
     this.error = null;
 
     try {
-      await firstValueFrom(this.trpc.deleteBook(bookId));
+      await firstValueFrom(this.bookstoreService.deleteBook(bookId));
       this.books = this.books.filter(book => book.id !== bookId);
     } catch (err) {
       this.error = 'Failed to delete book';

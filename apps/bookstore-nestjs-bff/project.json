@@ -1,0 +1,68 @@
+{
+  "name": "bookstore-nestjs-bff",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/bookstore-nestjs-bff/src",
+  "projectType": "application",
+  "targets": {
+    "generate-dtos": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o src/generated --additional-properties=supportsES6=true,npmName=@bookstore-nestjs-bff/api,withInterfaces=true --use-docker",
+        "cwd": "apps/bookstore-nestjs-bff"
+      }
+    },
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "dependsOn": ["generate-dtos"],
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/bookstore-nestjs-bff",
+        "main": "apps/bookstore-nestjs-bff/src/main.ts",
+        "tsConfig": "apps/bookstore-nestjs-bff/tsconfig.app.json",
+        "isolatedConfig": true,
+        "webpackConfig": "apps/bookstore-nestjs-bff/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "bookstore-nestjs-bff:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "bookstore-nestjs-bff:build:development"
+        },
+        "production": {
+          "buildTarget": "bookstore-nestjs-bff:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/bookstore-nestjs-bff/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    }
+  },
+  "tags": []
+}
