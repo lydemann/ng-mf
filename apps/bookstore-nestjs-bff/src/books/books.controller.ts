@@ -1,28 +1,28 @@
 import {
-    Controller,
-    Get,
-    Post,
-    Put,
-    Delete,
-    Body,
-    Param,
-    Query,
-    HttpStatus,
-    HttpCode,
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  Query,
+  HttpStatus,
+  HttpCode,
 } from '@nestjs/common';
 import {
-    ApiTags,
-    ApiOperation,
-    ApiResponse,
-    ApiParam,
-    ApiQuery,
-    ApiBody,
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+  ApiQuery,
+  ApiBody,
 } from '@nestjs/swagger';
 import { BooksService } from './books.service';
-import { Book } from '../models';
 import { BookCreateDto } from './dto/book-create.dto';
 import { BookUpdateDto } from './dto/book-update.dto';
 import { BookDto } from './dto/book.dto';
+import { Book } from '../../../../libs/bookstore/data-access/src';
 
 @ApiTags('BookstoreBff')
 @Controller('v1/books')

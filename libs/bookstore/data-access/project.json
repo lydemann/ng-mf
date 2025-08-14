@@ -1,0 +1,23 @@
+{
+  "name": "bookstore-data-access",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/bookstore/data-access/src",
+  "projectType": "library",
+  "targets": {
+    "generate-dtos": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx @openapitools/openapi-generator-cli generate",
+        "cwd": "libs/bookstore/data-access"
+      }
+    },
+    "generate-angular": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx @openapitools/openapi-generator-cli generate --generator-key typescript-angular",
+        "cwd": "libs/bookstore/data-access"
+      }
+    }
+  },
+  "tags": ["scope:bookstore", "type:data-access"]
+}

@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
-import { Book } from '../models';
 import { BookCreateDto } from './dto/book-create.dto';
 import { BookUpdateDto } from './dto/book-update.dto';
+import { Book } from '../../../../libs/bookstore/data-access/src/generated/angular/model/book.model';
 
 @Injectable()
 export class BooksService {

@@ -4,18 +4,11 @@
   "sourceRoot": "apps/bookstore-nestjs-bff/src",
   "projectType": "application",
   "targets": {
-    "generate-dtos": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o src/generated --additional-properties=supportsES6=true,npmName=@bookstore-nestjs-bff/api,withInterfaces=true --use-docker",
-        "cwd": "apps/bookstore-nestjs-bff"
-      }
-    },
     "build": {
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
-      "dependsOn": ["generate-dtos"],
+      "dependsOn": ["bookstore-data-access:generate-dtos"],
       "options": {
         "target": "node",
         "compiler": "tsc",
