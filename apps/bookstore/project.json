@@ -74,6 +74,17 @@
       },
       "defaultConfiguration": "development"
     },
+    "serve-all": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx serve bookstore",
+          "nx serve dashboard",
+          "nx serve bookstore-nestjs-bff"
+        ],
+        "parallel": true
+      }
+    },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
